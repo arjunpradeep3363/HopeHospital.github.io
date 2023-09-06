@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="col-lg-12 stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">Patient Details</h4>
+<!--                    <p class="card-description"> Add class <code>.table-{color}</code>-->
+<!--                    </p>-->
+                    <div class="table-responsive">
+                      <table class="table table-bordered table-contextual">
+                        <thead>
+                          <tr>
+                            <th>Patient Name</th>
+                            <th>Age</th>
+                            <th>Address</th>
+                            <th>Contact Number</th>
+                            <th>Medical History</th>
+                            <th>Admitted Department</th>
+                            <th>Insurance Information</th>
+                            <th>Assigned Doctor</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                        {% for d in data %}
+                          <tr class="table-info">
+                            <td>{{d.Patient_Name}}</td>
+                            <td>{{d.Age}}</td>
+                            <td>{{d.Address}}</td>
+                            <td>{{d.Contact_Phone}}</td>
+                            <td>{{d.Medical_History}}</td>
+                            <td>{{d.Admitted_Department}}</td>
+                            <td>{{d.Insurance_Information}}</td>
+                            <td>{{d.Assigned_Doctor}}</td>
+                             <td>
+                              <form action="{% url 'patientedit' dataid=d.id %}">
+                                <button type="submit" class="btn btn-primary mr-2">Edit</button>
+                              </form>
+                            </td>
+                             <td>
+                              <form action="{% url 'deletepatientdata' dataid=d.id %}">
+                                <button type="submit" class="btn btn-primary mr-2">Delete</button>
+                              </form>
+                            </td>
+                          </tr>
+                        {% endfor %}
+
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+  {% if messages %}
+      {% for i in messages %}
+          {% if i.tags == 'warning' %}
+              <script>
+          swal('{{i}}','', 'warning');
+              </script>
+          {% elif i.tags == 'error' %}
+              <script>
+             swal('{{i}}','', 'error');
+              </script>
+          {% else %}
+                <script>
+               swal('{{i}}','', 'success');
+                </script>
+
+          {% endif %}
+      {% endfor %}
+  {% endif %}
+
+
+
+</body>
+</html>
+{% endblock %}

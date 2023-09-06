@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="col-12 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">Patient Details</h4>
+                    <p class="card-description"> Enter Details </p>
+                    <form method="post" enctype="multipart/form-data" action="{% url 'patientsave' %}" class="forms-sample">
+                    {% csrf_token %}
+                      <div class="form-group">
+                        <label for="exampleInputName1">Patient Name</label>
+                        <input type="text" class="form-control" id="exampleInputName1" placeholder="Name" name="pname">
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputName1">Age</label>
+                        <input type="number" class="form-control" id="exampleInputName1" placeholder="age" name="age">
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputName1">Address</label>
+                        <input type="text" class="form-control" id="exampleInputName1" placeholder="address" name="address">
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputName1">Contact Phone</label>
+                        <input type="number" class="form-control" id="exampleInputName1" placeholder="phone" name="phone">
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleTextarea1">Medical History</label>
+                        <input type="text" class="form-control" id="exampleInputName1" placeholder="history" name="history">
+                      </div>
+                         <div class="form-group">
+                        <label for="exampleInputName1">Admitted Department</label>
+                        <select class="form-control" name="department" id="">
+                              <option>Select Department</option>
+                              {% for d in data %}
+                              <option>{{d.Department_Name}}</option>
+                              {% endfor %}
+                          </select>
+                      </div>
+                       <div class="form-group">
+                        <label for="exampleInputName1">Insurance Information</label>
+                        <input type="text" class="form-control" id="exampleInputName1" placeholder="Insurance Information" name="insurance">
+                      </div>
+                       <div class="form-group">
+                        <label for="exampleInputName1">Assigned Doctor</label>
+                        <select class="form-control" name="adoctor" id="">
+                              <option>Select Doctor</option>
+                              {% for d in doctor %}
+                              <option>{{d.Name}}</option>
+                              {% endfor %}
+                          </select>
+
+                      </div>
+
+
+                      <button type="submit" class="btn btn-outline-success mr-2">Submit</button>
+                      <button class="btn btn-outline-success">Cancel</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+  {% if messages %}
+      {% for i in messages %}
+          {% if i.tags == 'warning' %}
+              <script>
+          swal('{{i}}','', 'warning');
+              </script>
+          {% elif i.tags == 'error' %}
+              <script>
+             swal('{{i}}','', 'error');
+              </script>
+          {% else %}
+                <script>
+               swal('{{i}}','', 'success');
+                </script>
+
+          {% endif %}
+      {% endfor %}
+  {% endif %}
+
+
+
+
+</body>
+</html>
+{% endblock %}
