@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Appointments</title>
+</head>
+<body>
+<div class="col-lg-12 stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">Appointments</h4>
+<!--                    <p class="card-description"> Add class <code>.table-{color}</code>-->
+<!--                    </p>-->
+                    <div class="table-responsive">
+                      <table class="table table-bordered table-contextual">
+                        <thead>
+                          <tr>
+                            <th>Department Name</th>
+                            <th>Doctor Name</th>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Patient Name</th>
+                            <th>Phone</th>
+                            <th>Message</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                        {% for d in data %}
+                          <tr class="table-info">
+                            <td>{{d.Department_Name}}</td>
+                            <td>{{d.Doctor_Name}}</td>
+                            <td>{{d.Date}}</td>
+                            <td>{{d.Time}}</td>
+                            <td>{{d.Name}}</td>
+                            <td>{{d.Phone}}</td>
+                            <td>{{d.Message}}</td>
+
+                             <td>
+                              <form action="{% url 'deleteappointment' dataid=d.id %}">
+                                <button type="submit" class="btn btn-primary mr-2">Delete</button>
+                              </form>
+                            </td>
+                          </tr>
+                        {% endfor %}
+
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+  {% if messages %}
+      {% for i in messages %}
+          {% if i.tags == 'warning' %}
+              <script>
+          swal('{{i}}','', 'warning');
+              </script>
+          {% elif i.tags == 'error' %}
+              <script>
+             swal('{{i}}','', 'error');
+              </script>
+          {% else %}
+                <script>
+               swal('{{i}}','', 'success');
+                </script>
+
+          {% endif %}
+      {% endfor %}
+  {% endif %}
+
+
+
+</body>
+</html>
+{% endblock %}

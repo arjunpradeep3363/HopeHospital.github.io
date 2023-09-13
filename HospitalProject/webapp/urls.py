@@ -1,0 +1,36 @@
+from django.urls import path
+from webapp import views
+
+
+urlpatterns = [
+    path('homepage/',views.homepage,name="homepage"),
+    path('aboutpage/',views.aboutpage,name="aboutpage"),
+    path('departmentpage/',views.departmentpage,name="departmentpage"),
+    path('servicespage/',views.servicespage,name="servicespage"),
+    path('doctorpage/',views.doctorpage,name="doctorpage"),
+    path('appointmentpage/',views.appointmentpage,name="appointmentpage"),
+    path('singledepartmentpage/<int:dataid>/',views.singledepartmentpage,name="singledepartmentpage"),
+    path('appointmentconfirmationpage/',views.appointmentconfirmationpage,name="appointmentconfirmationpage"),
+    path('doctorsinglepage/<int:dataid>/',views.doctorsinglepage,name="doctorsinglepage"),
+    path('contactpage/',views.contactpage,name="contactpage"),
+    path('nursepage/',views.nursepage,name="nursepage"),
+    path('singlenursepage/<int:dataid>/',views.singlenursepage,name="singlenursepage"),
+    path('medicinepage/',views.medicinepage,name="medicinepage"),
+    path('singlemedicine/<int:dataid>/',views.singlemedicine,name="singlemedicine"),
+    path('registerloginpage/',views.registerloginpage,name="registerloginpage"),
+    path('registerloginsave/',views.registerloginsave,name="registerloginsave"),
+    path('userlogin/',views.userlogin,name="userlogin"),
+    path('UserLogout/',views.UserLogout,name="UserLogout"),
+    path('savecontactpage/',views.savecontactpage,name="savecontactpage"),
+    path('medicinecartpage/',views.medicinecartpage,name="medicinecartpage"),
+    path('medicinecartsave/',views.medicinecartsave,name="medicinecartsave"),
+    path('deletecart/<int:dataid>/',views.deletecart,name="deletecart"),
+    path('checkoutpage/',views.checkoutpage,name="checkoutpage"),
+    path('savecheckout/',views.savecheckout,name="savecheckout"),
+    path('invoicepage/',views.invoicepage,name="invoicepage"),
+    path('appointmentsave/',views.appointmentsave,name="appointmentsave"),
+    path('logintopatientdb/',views.logintopatientdb,name="logintopatientdb"),
+    path('stafflogin/',views.stafflogin,name="stafflogin"),
+    path('patientpage/',views.patientpage,name="patientpage"),
+    path('stafflogout/',views.stafflogout,name="stafflogout"),
+]
